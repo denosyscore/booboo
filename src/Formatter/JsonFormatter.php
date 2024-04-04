@@ -1,12 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Denosys\BooBoo\Formatter;
+
+use ErrorException;
 
 class JsonFormatter extends AbstractFormatter
 {
     public function format($e)
     {
-        if ($e instanceof \ErrorException) {
+        if ($e instanceof ErrorException) {
             $arrays = $this->handleErrors($e);
         } else {
             $arrays = $this->formatExceptions($e);
@@ -15,7 +19,7 @@ class JsonFormatter extends AbstractFormatter
         return json_encode($arrays);
     }
 
-    public function handleErrors(\ErrorException $e)
+    public function handleErrors(ErrorException $e)
     {
         $severity = $this->determineSeverityTextValue($e->getSeverity());
         $message = $e->getMessage();
