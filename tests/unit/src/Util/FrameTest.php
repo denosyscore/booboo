@@ -1,9 +1,10 @@
 <?php
 
-use League\BooBoo\Util\Frame;
+use Denosys\BooBoo\Util\Frame;
 use PHPUnit\Framework\TestCase;
 
-class FrameTest extends TestCase {
+class FrameTest extends TestCase
+{
 
     /**
      * @var Frame
@@ -13,11 +14,11 @@ class FrameTest extends TestCase {
 
     protected $frameArr = array();
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
 
         $frame = [
-            'file' => __DIR__.'/../../index.php',
+            'file' => __DIR__ . '/../../index.php',
             'line' => 11,
             'class' => 'ABC',
             'function' => 'ghi',
@@ -30,27 +31,31 @@ class FrameTest extends TestCase {
 
         $this->frame = new Frame($frame);
         $this->frameArr = $frame;
-
     }
 
-    public function testGetFile() {
+    public function testGetFile()
+    {
         $file = $this->frame->getFile();
-        $this->assertEquals(__DIR__.'/../../index.php', $file);
+        $this->assertEquals(__DIR__ . '/../../index.php', $file);
     }
 
-    public function testGetLine() {
+    public function testGetLine()
+    {
         $this->assertEquals(11, $this->frame->getLine());
     }
 
-    public function testGetClass() {
+    public function testGetClass()
+    {
         $this->assertEquals('ABC', $this->frame->getClass());
     }
 
-    public function testGetFunction() {
+    public function testGetFunction()
+    {
         $this->assertEquals('ghi', $this->frame->getFunction());
     }
 
-    public function testGetArgs() {
+    public function testGetArgs()
+    {
         $args = $this->frame->getArgs();
         $this->assertCount(3, $args);
     }
@@ -70,7 +75,8 @@ class FrameTest extends TestCase {
         ]], $this->frame->getComments());
     }
 
-    public function testGetRawFrame() {
+    public function testGetRawFrame()
+    {
         $this->assertEquals($this->frame->getRawFrame(), $this->frameArr);
     }
 
@@ -92,17 +98,20 @@ class FrameTest extends TestCase {
         $this->frame->getFileLines(0, -1);
     }
 
-    public function testFramesAreEqual() {
+    public function testFramesAreEqual()
+    {
         $this->assertTrue($this->frame->equals($this->frame));
     }
 
-    public function testFramesAreNotEqual() {
+    public function testFramesAreNotEqual()
+    {
         $notEqualFrame = $this->frameArr;
         $notEqualFrame['file'] = 'test.php';
         $this->assertFalse($this->frame->equals(new Frame($notEqualFrame)));
     }
 
-    public function testSerialize() {
+    public function testSerialize()
+    {
         $serialized = serialize($this->frame);
         $unserializedObj = unserialize($serialized);
         $this->assertTrue(($this->frame == $unserializedObj));
