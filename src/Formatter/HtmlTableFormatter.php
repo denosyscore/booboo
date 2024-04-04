@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Denosys\BooBoo\Formatter;
 
+use ErrorException;
 use Denosys\BooBoo\Util;
 
 class HtmlTableFormatter extends AbstractFormatter
@@ -15,14 +18,14 @@ class HtmlTableFormatter extends AbstractFormatter
     {
         $this->inspector = new Util\Inspector($e);
 
-        if ($e instanceof \ErrorException) {
+        if ($e instanceof ErrorException) {
             return $this->handleErrors($e);
         }
 
         return $this->formatExceptions($e);
     }
 
-    public function handleErrors(\ErrorException $e)
+    public function handleErrors(ErrorException $e)
     {
         $errorString = "<strong>%s</strong>: %s in <strong>%s</strong> on line <strong>%d</strong>";
 
