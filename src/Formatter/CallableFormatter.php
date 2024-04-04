@@ -1,5 +1,6 @@
 <?php
-namespace League\BooBoo\Formatter;
+
+namespace Denosys\BooBoo\Formatter;
 
 use Exception;
 
