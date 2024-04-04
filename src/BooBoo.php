@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Denosys\BooBoo;
 
+use Exception;
 use ErrorException;
-use Denosys\BooBoo\Exception\NoFormattersRegisteredException;
-use Denosys\BooBoo\Formatter\FormatterInterface;
 use Denosys\BooBoo\Handler\HandlerInterface;
+use Denosys\BooBoo\Formatter\FormatterInterface;
+use Denosys\BooBoo\Exception\NoFormattersRegisteredException;
 
 class BooBoo
 {
@@ -288,7 +291,7 @@ class BooBoo
         /** @var \Denosys\BooBoo\Handler\HandlerInterface $handler */
         foreach (array_reverse($this->handlerStack) as $handler) {
             $handledException = $handler->handle($e);
-            if ($handledException instanceof \Exception) {
+            if ($handledException instanceof Exception) {
                 $e = $handledException;
             }
         }
