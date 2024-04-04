@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * File modified from Filp/Whoops
  * @author Filipe Dobreira <http://github.com/filp>
@@ -7,6 +9,11 @@
  */
 
 namespace Denosys\BooBoo\Util;
+
+use Exception;
+use Throwable;
+use ErrorException;
+use InvalidArgumentException;
 
 class Inspector
 {
@@ -30,8 +37,8 @@ class Inspector
      */
     public function __construct($exception)
     {
-        if (!($exception instanceof \Exception) && !($exception instanceof \Throwable)) {
-            throw new \InvalidArgumentException('The exception was not valid');
+        if (!($exception instanceof Exception) && !($exception instanceof Throwable)) {
+            throw new InvalidArgumentException('The exception was not valid');
         }
         $this->exception = $exception;
     }
@@ -94,7 +101,7 @@ class Inspector
             // get rid of the last frame, which matches the handleError method,
             // and do not add the current exception to trace. We ensure that
             // the next frame does have a filename / linenumber, though.
-            if ($this->exception instanceof \ErrorException) {
+            if ($this->exception instanceof ErrorException) {
                 foreach ($frames as $k => $frame) {
                     if (
                         isset($frame['class']) &&
