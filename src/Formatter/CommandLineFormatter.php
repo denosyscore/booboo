@@ -1,6 +1,6 @@
 <?php
 
-namespace League\BooBoo\Formatter;
+namespace Denosys\BooBoo\Formatter;
 
 class CommandLineFormatter extends AbstractFormatter
 {
