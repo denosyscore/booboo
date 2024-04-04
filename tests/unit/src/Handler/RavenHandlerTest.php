@@ -1,6 +1,6 @@
 <?php
 
-use League\BooBoo\Handler\SentryHandler;
+use Denosys\BooBoo\Handler\SentryHandler;
 use PHPUnit\Framework\TestCase;
 
 class RavenHandlerTest extends TestCase
@@ -33,6 +33,5 @@ class RavenHandlerTest extends TestCase
         $handler = new SentryHandler($ravenClient, $errorLevel);
         $handler->handle($exception);
         $this->assertCount(0, $ravenClient->loggedExceptions);
-
     }
 }
