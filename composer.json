@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Denosys\\Mini\\BooBoo\\": "src/",
+            "Denosys\\BooBoo\\": "src/",
             "Tests\\Fakes\\": "tests/fakes/"
         }
     },
