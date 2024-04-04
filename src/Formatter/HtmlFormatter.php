@@ -1,8 +1,8 @@
 <?php
 
-namespace League\BooBoo\Formatter;
+namespace Denosys\BooBoo\Formatter;
 
-use League\BooBoo\Util;
+use Denosys\BooBoo\Util;
 
 class HtmlFormatter extends AbstractFormatter
 {
