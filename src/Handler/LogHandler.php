@@ -1,6 +1,6 @@
 <?php
 
-namespace League\BooBoo\Handler;
+namespace Denosys\BooBoo\Handler;
 
 class LogHandler implements HandlerInterface
 {
