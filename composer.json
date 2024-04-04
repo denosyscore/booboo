@@ -1,5 +1,5 @@
 {
-    "name": "league/booboo",
+    "name": "denosyscore/booboo",
     "type": "library",
     "description": "Provides an error handler for PHP that can execute a stack of handlers for various purposes.",
     "license": "MIT",
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.3|>=8.0",
+        "php": "^8.0",
         "psr/log": "^3.0"
     },
     "suggest": {
@@ -18,14 +18,14 @@
     },
     "autoload": {
         "psr-4": {
-            "League\\BooBoo\\": "src/",
+            "Denosys\\Mini\\BooBoo\\": "src/",
             "Tests\\Fakes\\": "tests/fakes/"
         }
     },
     "require-dev": {
-        "mockery/mockery": "^1.4",
+        "mockery/mockery": "^1.6",
         "phpunit/phpunit": "^9.5",
         "php-http/mock-client": "^1.4",
-        "sentry/sentry": "^3.3"
+        "sentry/sentry": "^4.6"
     }
 }
