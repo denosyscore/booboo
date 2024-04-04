@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Denosys\BooBoo\Formatter;
 
 class NullFormatter extends AbstractFormatter
