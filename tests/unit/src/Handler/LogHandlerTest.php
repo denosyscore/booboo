@@ -1,9 +1,10 @@
 <?php
 
-use League\BooBoo\Handler\LogHandler;
+use Denosys\BooBoo\Handler\LogHandler;
 use PHPUnit\Framework\TestCase;
 
-class LogHandlerTest extends TestCase {
+class LogHandlerTest extends TestCase
+{
 
     /**
      * @var LogHandler
@@ -16,18 +17,20 @@ class LogHandlerTest extends TestCase {
     protected $logger;
 
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->logger = new \Tests\Fakes\Psr3Handler();
         $this->handler = new LogHandler($this->logger);
     }
 
-    public function testExceptionsAreLoggedCritical() {
+    public function testExceptionsAreLoggedCritical()
+    {
         $this->handler->handle(new \Exception);
         $this->assertEquals(1, $this->logger::$critical);
     }
 
-    public function testErrorExceptionForErrors() {
+    public function testErrorExceptionForErrors()
+    {
         $message = 'test message';
         $exception = new \ErrorException($message);
         $this->handler->handle(new \ErrorException($message, 0, E_ERROR));
@@ -40,7 +43,8 @@ class LogHandlerTest extends TestCase {
         $this->assertEquals(6, $this->logger::$error);
     }
 
-    public function testErrorExceptionForWarnings() {
+    public function testErrorExceptionForWarnings()
+    {
         $message = 'test message';
         $exception = new \ErrorException($message);
         $this->handler->handle(new \ErrorException($message, 0, E_WARNING));
@@ -51,7 +55,8 @@ class LogHandlerTest extends TestCase {
         $this->assertEquals(4, $this->logger::$warning);
     }
 
-    public function testErrorExceptionForNoticesAndInfo() {
+    public function testErrorExceptionForNoticesAndInfo()
+    {
         $message = 'test message';
         $exception = new \ErrorException($message);
         $this->handler->handle(new \ErrorException($message, 0, E_NOTICE));
@@ -64,7 +69,7 @@ class LogHandlerTest extends TestCase {
         $this->assertEquals(3, $this->logger::$info);
     }
 
-    protected function tearDown() : void
+    protected function tearDown(): void
     {
         Mockery::close();
     }
