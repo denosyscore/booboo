@@ -1,6 +1,6 @@
 <?php
 
-namespace League\BooBoo\Exception;
+namespace Denosys\BooBoo\Exception;
 
 class NoFormattersRegisteredException extends \Exception
 {
