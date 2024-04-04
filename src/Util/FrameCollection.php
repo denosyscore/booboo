@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * File used from Filp/Whoops
  * @author Filipe Dobreira <http://github.com/filp>
@@ -7,11 +9,13 @@
 
 namespace Denosys\BooBoo\Util;
 
-use ArrayAccess;
-use ArrayIterator;
 use Countable;
-use IteratorAggregate;
+use Exception;
+use ArrayAccess;
+use Traversable;
 use Serializable;
+use ArrayIterator;
+use IteratorAggregate;
 use UnexpectedValueException;
 
 /**
@@ -53,7 +57,7 @@ class FrameCollection implements ArrayAccess, IteratorAggregate, Countable
      * @see IteratorAggregate::getIterator
      * @return ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->frames);
     }
@@ -62,7 +66,7 @@ class FrameCollection implements ArrayAccess, IteratorAggregate, Countable
      * @see ArrayAccess::offsetExists
      * @param int $offset
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->frames[$offset]);
     }
@@ -80,16 +84,20 @@ class FrameCollection implements ArrayAccess, IteratorAggregate, Countable
      * @see ArrayAccess::offsetSet
      * @param int $offset
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
-        throw new \Exception(__CLASS__ . ' is read only');
+        throw new Exception(__CLASS__ . ' is read only');
     }
 
     /**
      * @see ArrayAccess::offsetUnset
      * @param int $offset
      */
-    public function offsetUnset($offset)
+    /**
+     * @see ArrayAccess::offsetUnset
+     * @param mixed $offset
+     */
+    public function offsetUnset($offset): void
     {
         throw new \Exception(__CLASS__ . ' is read only');
     }
@@ -98,7 +106,7 @@ class FrameCollection implements ArrayAccess, IteratorAggregate, Countable
      * @see Countable::count
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->frames);
     }
