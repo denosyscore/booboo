@@ -48,7 +48,7 @@ class FrameCollection implements ArrayAccess, IteratorAggregate, Countable
      * @see    FrameCollection::getIterator
      * @return array
      */
-    public function getArray()
+    public function getArray(): array
     {
         return $this->frames;
     }
@@ -64,27 +64,31 @@ class FrameCollection implements ArrayAccess, IteratorAggregate, Countable
 
     /**
      * @see ArrayAccess::offsetExists
-     * @param int $offset
+     * @param mixed $offset
+     * @return bool
      */
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->frames[$offset]);
     }
 
     /**
      * @see ArrayAccess::offsetGet
-     * @param int $offset
+     * @param mixed $offset
+     * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->frames[$offset];
     }
 
     /**
      * @see ArrayAccess::offsetSet
-     * @param int $offset
+     * @param mixed $offset
+     * @param mixed $value
+     * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         throw new Exception(__CLASS__ . ' is read only');
     }
@@ -96,8 +100,9 @@ class FrameCollection implements ArrayAccess, IteratorAggregate, Countable
     /**
      * @see ArrayAccess::offsetUnset
      * @param mixed $offset
+     * @return void
      */
-    public function offsetUnset($offset): void
+    public function offsetUnset(mixed $offset): void
     {
         throw new Exception(__CLASS__ . ' is read only');
     }
@@ -113,8 +118,9 @@ class FrameCollection implements ArrayAccess, IteratorAggregate, Countable
 
     /**
      * @param Frame[] $frames Array of Frame instances, usually from $e->getPrevious()
+     * @return void
      */
-    public function prependFrames(array $frames)
+    public function prependFrames(array $frames): void
     {
         $this->frames = array_merge($frames, $this->frames);
     }
@@ -125,7 +131,7 @@ class FrameCollection implements ArrayAccess, IteratorAggregate, Countable
      * @param  FrameCollection $parentFrames Outer exception frames to compare tail against
      * @return Frame[]
      */
-    public function topDiff(FrameCollection $parentFrames)
+    public function topDiff(FrameCollection $parentFrames): array
     {
         $diff = $this->frames;
 
