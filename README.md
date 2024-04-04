@@ -7,6 +7,7 @@
 [![Test Coverage](https://codeclimate.com/github/thephpleague/booboo/badges/coverage.svg)](https://codeclimate.com/github/thephpleague/booboo)
 
 ## Purpose
+
 An error handler for PHP that allows for the execution of handlers and formatters for viewing and managing errors in
 development and production. Because we all make mistakes.
 
@@ -32,7 +33,7 @@ send a patch via pull request.
 
 BooBoo relies upon and requires the following dependencies:
 
-* `psr/log` - A PSR-3 compliant interface for logging.
+- `psr/log` - A PSR-3 compliant interface for logging.
 
 No other dependencies are required. The maintainer recommends installing [monolog][] for logging.
 
@@ -72,20 +73,20 @@ innovations!)
 
 ### BooBoo is actively maintained
 
-PHP is changing every year, and BooBoo will change along with it. 
+PHP is changing every year, and BooBoo will change along with it.
 
 ## Getting Started
 
 ### Instantiation
 
-The main object that you need to instantiate is `League\BooBoo\BooBoo`. This object takes care of setting the error
+The main object that you need to instantiate is `Denosys\BooBoo\BooBoo`. This object takes care of setting the error
 handler, as well as handling errors and exceptions. It takes optional arguments during construction for handlers and
 formatters.
 
 ```php
 <?php
 
-$booboo = new League\BooBoo\BooBoo();
+$booboo = new Denosys\BooBoo\BooBoo();
 $booboo->register(); // Registers the handlers
 ```
 
@@ -99,17 +100,17 @@ an exception and won't register the error handlers.
 
 The library ships with four formatters for your convenience:
 
-* `HtmlFormatter` - Formats errors just like PHP's error formatting.
-* `HtmlTableFormatter` - Formats errors and exceptions similar to Xdebug, wth a full stack trace, even for errors.
-* `JsonFormatter` - Perfect for displaying errors to an API.
-* `CommandLineFormatter` - Working with the command line? This will produce pretty command-line errors.
-* `NullFormatter` - This formatter simply silences all errors. You can pass this when display_errors = Off.
-Adding a formatter is easy:
+- `HtmlFormatter` - Formats errors just like PHP's error formatting.
+- `HtmlTableFormatter` - Formats errors and exceptions similar to Xdebug, wth a full stack trace, even for errors.
+- `JsonFormatter` - Perfect for displaying errors to an API.
+- `CommandLineFormatter` - Working with the command line? This will produce pretty command-line errors.
+- `NullFormatter` - This formatter simply silences all errors. You can pass this when display_errors = Off.
+  Adding a formatter is easy:
 
 ```php
 <?php
 
-$booboo->pushFormatter(new League\BooBoo\Formatter\HtmlFormatter());
+$booboo->pushFormatter(new Denosys\BooBoo\Formatter\HtmlFormatter());
 ```
 
 ### Controlling which formatter does the formatting
@@ -123,8 +124,8 @@ to be ignored, you can configure the formatters to handle this scenario as such:
 ```php
 <?php
 
-$html = new League\BooBoo\Formatter\HtmlFormatter();
-$null = new League\BooBoo\Formatter\NullFormatter();
+$html = new Denosys\BooBoo\Formatter\HtmlFormatter();
+$null = new Denosys\BooBoo\Formatter\NullFormatter();
 
 $html->setErrorLimit(E_ERROR | E_WARNING | E_USER_ERROR | E_USER_WARNING);
 $null->setErrorLimit(E_ALL);
