@@ -212,12 +212,21 @@ class Frame implements Serializable
 
     /**
      * Implements the Serializable interface.
-     *
+     * 
+     * @return string The serialized object.
      * @see Serializable::serialize
+     */
+    public function serialize()
+    {
+        return $this->__serialize();
+    }
+
+    /**
+     * Serializes the object.
      *
      * @return string
      */
-    public function serialize()
+    public function __serialize()
     {
         $frame = $this->frame;
 
@@ -225,13 +234,24 @@ class Frame implements Serializable
     }
 
     /**
+     * Unserializes the given data and updates the object's state.
+     *
+     * @param string $data The serialized data to be unserialized.
+     * @return void
+     * @see Serializable::unserialize
+     */
+    public function unserialize(string $data)
+    {
+        $this->__unserialize($data);
+    }
+
+    /**
      * Unserializes the frame data.
      *
      * @param string $serializedFrame
-     *
-     * @see Serializable::unserialize
+     * @return void
      */
-    public function unserialize($serializedFrame)
+    public function __unserialize($serializedFrame)
     {
         $frame = unserialize($serializedFrame);
 
