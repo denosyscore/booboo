@@ -12,7 +12,7 @@ class CallableFormatterTest extends \PHPUnit\Framework\TestCase
 {
     public function testCallableIsCalled()
     {
-        $callable = new \League\BooBoo\Formatter\CallableFormatter(new TestCallableForFormatter);
+        $callable = new \Denosys\BooBoo\Formatter\CallableFormatter(new TestCallableForFormatter);
         $this->assertEquals('abcd', $callable->format(new Exception));
     }
 }
