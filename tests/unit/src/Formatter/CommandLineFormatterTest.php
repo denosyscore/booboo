@@ -1,6 +1,6 @@
 <?php
 
-use \League\BooBoo\Formatter\CommandLineFormatter;
+use \Denosys\BooBoo\Formatter\CommandLineFormatter;
 use PHPUnit\Framework\TestCase;
 
 class CommandLineFormatterText extends TestCase
