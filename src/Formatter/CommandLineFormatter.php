@@ -1,19 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Denosys\BooBoo\Formatter;
+
+use ErrorException;
 
 class CommandLineFormatter extends AbstractFormatter
 {
     public function format($e)
     {
-        if ($e instanceof \ErrorException) {
+        if ($e instanceof ErrorException) {
             return $this->handleErrors($e);
         }
 
         return $this->formatExceptions($e);
     }
 
-    public function handleErrors(\ErrorException $e)
+    public function handleErrors(ErrorException $e)
     {
         $errorString = "%s%s in %s on line %d\n";
 
