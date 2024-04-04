@@ -99,7 +99,7 @@ class FrameCollection implements ArrayAccess, IteratorAggregate, Countable
      */
     public function offsetUnset($offset): void
     {
-        throw new \Exception(__CLASS__ . ' is read only');
+        throw new Exception(__CLASS__ . ' is read only');
     }
 
     /**
