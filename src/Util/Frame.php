@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * File used from Filp/Whoops
  * @author Filipe Dobreira <http://github.com/filp>
@@ -198,7 +200,7 @@ class Frame implements Serializable
                 }
 
                 if ($length <= 0) {
-                    throw new \InvalidArgumentException(sprintf('$length must be greater than 0'));
+                    throw new InvalidArgumentException(sprintf('$length must be greater than 0'));
                 }
 
                 $lines = array_slice($lines, $start, $length, true);
