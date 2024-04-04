@@ -1,11 +1,13 @@
 <?php
 
-use League\BooBoo\Formatter\JsonFormatter;
+use Denosys\BooBoo\Formatter\JsonFormatter;
 use PHPUnit\Framework\TestCase;
 
-class JsonFormatterTest extends TestCase {
+class JsonFormatterTest extends TestCase
+{
 
-    public function testErrorExceptionFormatting() {
+    public function testErrorExceptionFormatting()
+    {
         $exception = new \ErrorException('whoops', 0, E_ERROR, 'index.php', 11);
         $formatter = new JsonFormatter();
         $result = $formatter->format($exception);
@@ -20,7 +22,8 @@ class JsonFormatterTest extends TestCase {
         $this->assertEquals($expected, $result);
     }
 
-    public function testRegularExceptionErrorFormatting() {
+    public function testRegularExceptionErrorFormatting()
+    {
         $exception = new \Exception('whoops', 123);
         $trace = $exception->getTrace();
         $line = $exception->getLine();
@@ -44,7 +47,8 @@ class JsonFormatterTest extends TestCase {
         $this->assertEquals($expected, $result);
     }
 
-    public function testNestedExceptionsDisplayBothMessages() {
+    public function testNestedExceptionsDisplayBothMessages()
+    {
         $exception = new \Exception('whoops');
         $exception2 = new Exception('bang', 0, $exception);
 
@@ -56,7 +60,5 @@ class JsonFormatterTest extends TestCase {
         $this->assertEquals(2, count($result));
         $this->assertEquals('whoops', $result[0]['message']);
         $this->assertEquals('bang', $result[1]['message']);
-
     }
-
 }
