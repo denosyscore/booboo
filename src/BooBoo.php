@@ -1,11 +1,11 @@
 <?php
 
-namespace League\BooBoo;
+namespace Denosys\BooBoo;
 
 use ErrorException;
-use League\BooBoo\Exception\NoFormattersRegisteredException;
-use League\BooBoo\Formatter\FormatterInterface;
-use League\BooBoo\Handler\HandlerInterface;
+use Denosys\BooBoo\Exception\NoFormattersRegisteredException;
+use Denosys\BooBoo\Formatter\FormatterInterface;
+use Denosys\BooBoo\Handler\HandlerInterface;
 
 class BooBoo
 {
@@ -137,7 +137,8 @@ class BooBoo
             print $formattedResponse;
         }
 
-        if ($this->silenceErrors &&
+        if (
+            $this->silenceErrors &&
             isset($this->errorPage) &&
             !($e instanceof ErrorException)
         ) {
@@ -172,7 +173,7 @@ class BooBoo
      * Registers the error handlers, and is required to be called before the
      * error handling code is effective.
      *
-     * @throws \League\BooBoo\Exception\NoFormattersRegisteredException
+     * @throws \Denosys\BooBoo\Exception\NoFormattersRegisteredException
      */
     public function register()
     {
@@ -193,7 +194,7 @@ class BooBoo
     /**
      * Add a new handler to the stack.
      *
-     * @param \League\BooBoo\Handler\HandlerInterface $handler
+     * @param \Denosys\BooBoo\Handler\HandlerInterface $handler
      * @return $this
      */
     public function pushHandler(HandlerInterface $handler)
@@ -205,7 +206,7 @@ class BooBoo
     /**
      * Remove an error handler from the bottom of the stack.
      *
-     * @return \League\BooBoo\Handler\HandlerInterface|null
+     * @return \Denosys\BooBoo\Handler\HandlerInterface|null
      */
     public function popHandler()
     {
@@ -236,7 +237,7 @@ class BooBoo
     /**
      * Adds a new formatter to the formatter stack.
      *
-     * @param \League\BooBoo\Formatter\FormatterInterface $formatter
+     * @param \Denosys\BooBoo\Formatter\FormatterInterface $formatter
      * @return $this
      */
     public function pushFormatter(FormatterInterface $formatter)
@@ -248,7 +249,7 @@ class BooBoo
     /**
      * Pops a formatter off the bottom of the formatter stack.
      *
-     * @return \League\BooBoo\Formatter\FormatterInterface|null
+     * @return \Denosys\BooBoo\Formatter\FormatterInterface|null
      */
     public function popFormatter()
     {
@@ -284,7 +285,7 @@ class BooBoo
      */
     protected function runHandlers($e)
     {
-        /** @var \League\BooBoo\Handler\HandlerInterface $handler */
+        /** @var \Denosys\BooBoo\Handler\HandlerInterface $handler */
         foreach (array_reverse($this->handlerStack) as $handler) {
             $handledException = $handler->handle($e);
             if ($handledException instanceof \Exception) {
@@ -308,7 +309,7 @@ class BooBoo
             $severity = E_ERROR;
         }
 
-        /** @var \League\BooBoo\Formatter\FormatterInterface $formatter */
+        /** @var \Denosys\BooBoo\Formatter\FormatterInterface $formatter */
         foreach (array_reverse($this->formatterStack) as $formatter) {
             if ($severity & $formatter->getErrorLimit()) {
                 return $formatter->format($e);
@@ -340,7 +341,7 @@ class BooBoo
     /**
      * Registers an error page for handling uncaught exceptions in production.
      *
-     * @param \League\BooBoo\Formatter\FormatterInterface $errorPage
+     * @param \Denosys\BooBoo\Formatter\FormatterInterface $errorPage
      */
     public function setErrorPageFormatter(FormatterInterface $errorPage)
     {
