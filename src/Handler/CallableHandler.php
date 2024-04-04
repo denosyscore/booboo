@@ -1,5 +1,6 @@
 <?php
-namespace League\BooBoo\Handler;
+
+namespace Denosys\BooBoo\Handler;
 
 class CallableHandler implements HandlerInterface
 {
