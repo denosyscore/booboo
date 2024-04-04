@@ -1,6 +1,6 @@
 <?php
 
-use League\BooBoo\Util\Inspector;
+use Denosys\BooBoo\Util\Inspector;
 use PHPUnit\Framework\TestCase;
 
 class InspectorText extends TestCase
@@ -15,7 +15,7 @@ class InspectorText extends TestCase
      */
     protected $exception;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         $this->exception = new ErrorException('test message');
         $this->inspector = new Inspector($this->exception);
@@ -35,5 +35,4 @@ class InspectorText extends TestCase
         $this->assertEquals(count($this->exception->getTrace()), count($frames));
         $this->assertTrue($this->inspector->hasFrames());
     }
-
 }
