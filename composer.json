@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=7.3|>=8.0",
-        "psr/log": "^1.0"
+        "psr/log": "^3.0"
     },
     "suggest": {
         "sentry/sentry": "Use Sentry for passing errors to Sentry."
