@@ -1,11 +1,12 @@
 <?php
+
 /**
  * File modified from Filp/Whoops
  * @author Filipe Dobreira <http://github.com/filp>
  * @author Brandon Savage <http://github.com/brandonsavage>
  */
 
-namespace League\BooBoo\Util;
+namespace Denosys\BooBoo\Util;
 
 class Inspector
 {
@@ -95,7 +96,8 @@ class Inspector
             // the next frame does have a filename / linenumber, though.
             if ($this->exception instanceof \ErrorException) {
                 foreach ($frames as $k => $frame) {
-                    if (isset($frame['class']) &&
+                    if (
+                        isset($frame['class']) &&
                         strpos($frame['class'], 'BooBoo') !== false
                     ) {
                         unset($frames[$k]);
