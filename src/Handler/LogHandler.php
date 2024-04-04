@@ -1,19 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Denosys\BooBoo\Handler;
+
+use ErrorException;
+use Psr\Log\LoggerInterface;
 
 class LogHandler implements HandlerInterface
 {
     protected $logger;
 
-    public function __construct(\Psr\Log\LoggerInterface $logger)
+    public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }
 
     public function handle($e)
     {
-        if ($e instanceof \ErrorException) {
+        if ($e instanceof ErrorException) {
             $this->handleErrorException($e);
             return;
         }
@@ -21,7 +26,7 @@ class LogHandler implements HandlerInterface
         $this->logger->critical($e->getMessage() . $e->getTraceAsString());
     }
 
-    protected function handleErrorException(\ErrorException $e)
+    protected function handleErrorException(ErrorException $e)
     {
         switch ($e->getSeverity()) {
 
