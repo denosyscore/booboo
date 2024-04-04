@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Denosys\BooBoo\Handler;
 
 interface HandlerInterface
