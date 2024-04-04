@@ -12,7 +12,7 @@ class CallableHandlerTest extends \PHPUnit\Framework\TestCase
 {
     public function testCallableIsCalled()
     {
-        $callable = new \League\BooBoo\Handler\CallableHandler(new TestCallableForHandler);
+        $callable = new \Denosys\BooBoo\Handler\CallableHandler(new TestCallableForHandler);
         $this->assertEquals('abcd', $callable->handle(new Exception));
     }
 }
